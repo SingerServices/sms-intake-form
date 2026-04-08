@@ -1,47 +1,29 @@
 <html>
 <head>
     <title>SMS Intake Form</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <form id="sms-intake-form">
-        <!-- Your form fields go here -->
+    <h1>SMS Intake Form</h1>
+    <form action="https://yourwebhook.url" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+
+        <!-- Add 50+ more fields here -->
+
         <input type="submit" value="Submit">
     </form>
     <script>
-        document.getElementById('sms-intake-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Detect if user is on mobile
-            var isMobile = /\b(iphone|ipad|android|iemobile|blackberry|mini|windows ce|palm|webos|mobile)\b/i.test(navigator.userAgent);
-            if (isMobile) {
-                // Collect all form data
-                var formData = new FormData(this);
-                var data = {};
-                formData.forEach(function(value, key) {
-                    data[key] = value;
-                });
-
-                // Send JSON to webhook URL
-                fetch('YOUR_WEBHOOK_URL_HERE', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Show success message
-                    alert('Form submitted successfully!');
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-            } else {
-                // Existing desktop PDF generation logic goes here
-                // Your existing code for PDF generation
-            }
-        });
+        // Mobile detection script
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            // Mobile specific code
+        }
     </script>
 </body>
 </html>
